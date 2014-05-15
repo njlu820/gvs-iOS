@@ -14,7 +14,6 @@
 		D8C789D2192442B100C80D45 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8C789D0192442B100C80D45 /* InfoPlist.strings */; };
 		D8C789D4192442B100C80D45 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C789D3192442B100C80D45 /* main.m */; };
 		D8C789D8192442B100C80D45 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C789D7192442B100C80D45 /* AppDelegate.m */; };
-		D8C789DB192442B100C80D45 /* gvs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8C789D9192442B100C80D45 /* gvs.xcdatamodeld */; };
 		D8C789DD192442B100C80D45 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8C789DC192442B100C80D45 /* Images.xcassets */; };
 		D8C789E4192442B100C80D45 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C789E3192442B100C80D45 /* XCTest.framework */; };
 		D8C789E5192442B100C80D45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C789C5192442B100C80D45 /* Foundation.framework */; };
@@ -22,6 +21,7 @@
 		D8C789E7192442B100C80D45 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C789CB192442B100C80D45 /* CoreData.framework */; };
 		D8C789EF192442B100C80D45 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8C789ED192442B100C80D45 /* InfoPlist.strings */; };
 		D8C789F1192442B100C80D45 /* gvsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C789F0192442B100C80D45 /* gvsTests.m */; };
+		D8C789FE19249A2B00C80D45 /* gvs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8C789FC19249A2B00C80D45 /* gvs.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,15 +44,15 @@
 		D8C789D1192442B100C80D45 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8C789D3192442B100C80D45 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D8C789D5192442B100C80D45 /* gvs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gvs-Prefix.pch"; sourceTree = "<group>"; };
-		D8C789D6192442B100C80D45 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		D8C789D7192442B100C80D45 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D8C789DA192442B100C80D45 /* gvs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = gvs.xcdatamodel; sourceTree = "<group>"; };
+		D8C789D6192442B100C80D45 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
+		D8C789D7192442B100C80D45 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		D8C789DC192442B100C80D45 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D8C789E2192442B100C80D45 /* gvsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gvsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8C789E3192442B100C80D45 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D8C789EC192442B100C80D45 /* gvsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "gvsTests-Info.plist"; sourceTree = "<group>"; };
 		D8C789EE192442B100C80D45 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8C789F0192442B100C80D45 /* gvsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gvsTests.m; sourceTree = "<group>"; };
+		D8C789FD19249A2B00C80D45 /* gvs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = gvs.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,9 @@
 		D8C789B9192442B100C80D45 = {
 			isa = PBXGroup;
 			children = (
-				D8C789CD192442B100C80D45 /* gvs */,
+				D8C789FA192498D400C80D45 /* Classes */,
+				D8C78A4019249B0600C80D45 /* Other Sources */,
+				D8C789FB192499FF00C80D45 /* Resources */,
 				D8C789EA192442B100C80D45 /* gvsTests */,
 				D8C789C4192442B100C80D45 /* Frameworks */,
 				D8C789C3192442B100C80D45 /* Products */,
@@ -112,29 +114,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D8C789CD192442B100C80D45 /* gvs */ = {
-			isa = PBXGroup;
-			children = (
-				D8C789D6192442B100C80D45 /* AppDelegate.h */,
-				D8C789D7192442B100C80D45 /* AppDelegate.m */,
-				D8C789DC192442B100C80D45 /* Images.xcassets */,
-				D8C789D9192442B100C80D45 /* gvs.xcdatamodeld */,
-				D8C789CE192442B100C80D45 /* Supporting Files */,
-			);
-			path = gvs;
-			sourceTree = "<group>";
-		};
-		D8C789CE192442B100C80D45 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D8C789CF192442B100C80D45 /* gvs-Info.plist */,
-				D8C789D0192442B100C80D45 /* InfoPlist.strings */,
-				D8C789D3192442B100C80D45 /* main.m */,
-				D8C789D5192442B100C80D45 /* gvs-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		D8C789EA192442B100C80D45 /* gvsTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +130,35 @@
 				D8C789ED192442B100C80D45 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D8C789FA192498D400C80D45 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D8C789D6192442B100C80D45 /* AppDelegate.h */,
+				D8C789D7192442B100C80D45 /* AppDelegate.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		D8C789FB192499FF00C80D45 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D8C789CF192442B100C80D45 /* gvs-Info.plist */,
+				D8C789FC19249A2B00C80D45 /* gvs.xcdatamodeld */,
+				D8C789D0192442B100C80D45 /* InfoPlist.strings */,
+				D8C789DC192442B100C80D45 /* Images.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D8C78A4019249B0600C80D45 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D8C789D5192442B100C80D45 /* gvs-Prefix.pch */,
+				D8C789D3192442B100C80D45 /* main.m */,
+			);
+			name = "Other Sources";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,7 +258,7 @@
 			files = (
 				D8C789D8192442B100C80D45 /* AppDelegate.m in Sources */,
 				D8C789D4192442B100C80D45 /* main.m in Sources */,
-				D8C789DB192442B100C80D45 /* gvs.xcdatamodeld in Sources */,
+				D8C789FE19249A2B00C80D45 /* gvs.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,8 +378,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "gvs/gvs-Prefix.pch";
-				INFOPLIST_FILE = "gvs/gvs-Info.plist";
+				GCC_PREFIX_HEADER = "gvs-Prefix.pch";
+				INFOPLIST_FILE = "gvs-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -383,8 +391,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "gvs/gvs-Prefix.pch";
-				INFOPLIST_FILE = "gvs/gvs-Info.plist";
+				GCC_PREFIX_HEADER = "gvs-Prefix.pch";
+				INFOPLIST_FILE = "gvs-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -461,13 +469,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		D8C789D9192442B100C80D45 /* gvs.xcdatamodeld */ = {
+		D8C789FC19249A2B00C80D45 /* gvs.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				D8C789DA192442B100C80D45 /* gvs.xcdatamodel */,
+				D8C789FD19249A2B00C80D45 /* gvs.xcdatamodel */,
 			);
-			currentVersion = D8C789DA192442B100C80D45 /* gvs.xcdatamodel */;
-			path = gvs.xcdatamodeld;
+			currentVersion = D8C789FD19249A2B00C80D45 /* gvs.xcdatamodel */;
+			name = gvs.xcdatamodeld;
+			path = Classes/gvs.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

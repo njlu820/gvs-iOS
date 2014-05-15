@@ -22,6 +22,7 @@
 		D8C789EF192442B100C80D45 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8C789ED192442B100C80D45 /* InfoPlist.strings */; };
 		D8C789F1192442B100C80D45 /* gvsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C789F0192442B100C80D45 /* gvsTests.m */; };
 		D8C789FE19249A2B00C80D45 /* gvs.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8C789FC19249A2B00C80D45 /* gvs.xcdatamodeld */; };
+		D8C78A431924F48800C80D45 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8C78A421924F48800C80D45 /* MainWindow.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D8C789EE192442B100C80D45 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8C789F0192442B100C80D45 /* gvsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gvsTests.m; sourceTree = "<group>"; };
 		D8C789FD19249A2B00C80D45 /* gvs.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = gvs.xcdatamodel; sourceTree = "<group>"; };
+		D8C78A421924F48800C80D45 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 		D8C789FB192499FF00C80D45 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D8C78A411924F41A00C80D45 /* UI */,
 				D8C789CF192442B100C80D45 /* gvs-Info.plist */,
 				D8C789FC19249A2B00C80D45 /* gvs.xcdatamodeld */,
 				D8C789D0192442B100C80D45 /* InfoPlist.strings */,
@@ -159,6 +162,14 @@
 				D8C789D3192442B100C80D45 /* main.m */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		D8C78A411924F41A00C80D45 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D8C78A421924F48800C80D45 /* MainWindow.xib */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +249,7 @@
 			files = (
 				D8C789D2192442B100C80D45 /* InfoPlist.strings in Resources */,
 				D8C789DD192442B100C80D45 /* Images.xcassets in Resources */,
+				D8C78A431924F48800C80D45 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

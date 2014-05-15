@@ -33,3 +33,19 @@ $RECYCLE.BIN/
 
 # Subversion
 .svn/
+
+# Project
+gvs.xcworkspace/*.mode1v3
+gvs.xcworkspace/*.mode2v3
+gvs.xcworkspace/*.pbxuser
+gvs.xcworkspace/*.perspectivev3
+gvs.xcworkspace/*.xcuserdata
+gvs.xcworkspace/project.xcworkspace
+gvs.xcworkspace/xcuserdata
+gvs.xcworkspace/xcshareddata/gvs.xccheckout
+gvs/gvs.xcodeproj/*.mode1v3
+gvs/gvs.xcodeproj/*.mode2v3
+gvs/gvs.xcodeproj/*.pbxuser
+gvs/gvs.xcodeproj/*.perspectivev3
+gvs/gvs.xcodeproj/project.xcworkspace
+gvs/gvs.xcodeproj/xcuserdata

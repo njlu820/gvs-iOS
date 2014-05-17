@@ -8,15 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class ReadPostsViewController;
+@class CommodityViewController;
+@class CartViewController;
+@class FavouriteViewController;
+@class SettingsViewController;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
-
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
+@property (nonatomic, strong) UITabBarController *tabBarController;
+@property (nonatomic, strong) ReadPostsViewController *readPostsViewController;
+@property (nonatomic, strong) CommodityViewController *commodityViewController;
+@property (nonatomic, strong) CartViewController *cartViewController;
+@property (nonatomic, strong) FavouriteViewController *favouriteViewController;
+@property (nonatomic, strong) SettingsViewController *settingsViewController;
 
 @end

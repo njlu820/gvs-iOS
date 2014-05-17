@@ -7,12 +7,37 @@
 //
 
 #import "AppDelegate.h"
+#import "ReadPostsViewController.h"
+#import "CommodityViewController.h"
+#import "CartViewController.h"
+#import "FavouriteViewController.h"
+#import "SettingsViewController.h"
+
+static NSString * const TabBarRestorationID = @"TabBarID";
+static NSString * const ReadNavigationRestorationID = @"ReadPostsNavigationID";
+static NSString * const CommodityNavigationRestorationID = @"CommodityNavigationID";
+static NSString * const CartNavigationRestorationID = @"CartNavigationID";
+static NSString * const FavouriteNavigationRestorationID = @"FavouriteNavigationID";
+static NSString * const SettingsNavigationRestorationID = @"SettingsNavigationID";
+
+@interface AppDelegate () <UITabBarControllerDelegate>
+
+@end
 
 @implementation AppDelegate
 
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [self customizeAppearance];
+    
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    [self.window setFrame:bounds];
+    [self.window setBounds:bounds]; // for good measure.
+    self.window.backgroundColor = [UIColor blackColor];
+    self.window.rootViewController = self.tabBarController;
+    
+    return YES;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -44,103 +69,108 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
+    
 }
 
-- (void)saveContext
+#pragma mark - Custom methods
+
+- (void)customizeAppearance
 {
-    NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-             // Replace this implementation with code to handle the error appropriately.
-             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        } 
-    }
+    self.window.tintColor = [StyleGuide newKidOnTheBlockBlue];
+    
+    [[UINavigationBar appearance] setBarTintColor:[StyleGuide newKidOnTheBlockBlue]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont fontWithName:@"OpenSans-Bold" size:16.0]} ];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"transparent-point"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[UIImage imageNamed:@"transparent-point"]];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName: [StyleGuide regularTextFont], NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSFontAttributeName: [StyleGuide regularTextFont], NSForegroundColorAttributeName: [UIColor lightGrayColor]} forState:UIControlStateDisabled];
+    [[UIToolbar appearance] setBarTintColor:[StyleGuide newKidOnTheBlockBlue]];
+    [[UISwitch appearance] setOnTintColor:[StyleGuide newKidOnTheBlockBlue]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"OpenSans" size:10.0]} forState:UIControlStateNormal];
 }
 
-#pragma mark - Core Data stack
 
-// Returns the managed object context for the application.
-// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext
-{
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
+#pragma mark - Tab bar methods
+
+- (UITabBarController *)tabBarController {
+    if (_tabBarController) {
+        return _tabBarController;
     }
     
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    UIOffset tabBarTitleOffset = UIOffsetMake(0, 0);
+    if ( IS_IPHONE ) {
+        tabBarTitleOffset = UIOffsetMake(0, -2);
     }
-    return _managedObjectContext;
-}
-
-// Returns the managed object model for the application.
-// If the model doesn't already exist, it is created from the application's model.
-- (NSManagedObjectModel *)managedObjectModel
-{
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"gvs" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
-}
-
-// Returns the persistent store coordinator for the application.
-// If the coordinator doesn't already exist, it is created and the application's store added to it.
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
-    }
+    _tabBarController = [[UITabBarController alloc] init];
+    _tabBarController.delegate = self;
+    _tabBarController.restorationIdentifier = TabBarRestorationID;
+    [_tabBarController.tabBar setTranslucent:NO];
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"gvs.sqlite"];
     
-    NSError *error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible;
-         * The schema for the persistent store is incompatible with current managed object model.
-         Check the error message to determine what the actual problem was.
-         
-         
-         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-         
-         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-         * Simply deleting the existing store:
-         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
-         
-         * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
-         @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES}
-         
-         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-         
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }    
+    // Create a background
+    // (not strictly needed when white, but left here for possible customization)
+    UIColor *backgroundColor = [UIColor whiteColor];
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [backgroundColor CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *tabBackgroundImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    _tabBarController.tabBar.backgroundImage = tabBackgroundImage;
     
-    return _persistentStoreCoordinator;
-}
-
-#pragma mark - Application's Documents directory
-
-// Returns the URL to the application's Documents directory.
-- (NSURL *)applicationDocumentsDirectory
-{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    self.readPostsViewController = [[ReadPostsViewController alloc] init];
+    UINavigationController *readNavigationController = [[UINavigationController alloc] initWithRootViewController:self.readPostsViewController];
+    readNavigationController.navigationBar.translucent = NO;
+    readNavigationController.tabBarItem.image = [UIImage imageNamed:@"icon-tab-read"];
+    readNavigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"icon-tab-read-filled"];
+    readNavigationController.restorationIdentifier = ReadNavigationRestorationID;
+    self.readPostsViewController.title = NSLocalizedString(@"Read", nil);
+    [readNavigationController.tabBarItem setTitlePositionAdjustment:tabBarTitleOffset];
+    
+    self.commodityViewController = [[CommodityViewController alloc] init];
+    UINavigationController *commodityNavigationController = [[UINavigationController alloc] initWithRootViewController:self.commodityViewController];
+    commodityNavigationController.navigationBar.translucent = NO;
+    commodityNavigationController.tabBarItem.image = [UIImage imageNamed:@"icon-tab-commodity"];
+    commodityNavigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"icon-tab-commodity-filled"];
+    commodityNavigationController.restorationIdentifier = CommodityNavigationRestorationID;
+    self.commodityViewController.title = NSLocalizedString(@"Commodity", nil);
+    [commodityNavigationController.tabBarItem setTitlePositionAdjustment:tabBarTitleOffset];
+    
+    self.cartViewController = [[CartViewController alloc] init];
+    UINavigationController *cartNavigationController = [[UINavigationController alloc] initWithRootViewController:self.cartViewController];
+    cartNavigationController.navigationBar.translucent = NO;
+    cartNavigationController.tabBarItem.image = [UIImage imageNamed:@"icon-tab-cart"];
+    cartNavigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"icon-tab-cart-filled"];
+    cartNavigationController.restorationIdentifier = CartNavigationRestorationID;
+    self.cartViewController.title = NSLocalizedString(@"Cart", nil);
+    [cartNavigationController.tabBarItem setTitlePositionAdjustment:tabBarTitleOffset];
+    
+    self.favouriteViewController = [[FavouriteViewController alloc] init];
+    UINavigationController *favouriteNavigationController = [[UINavigationController alloc] initWithRootViewController:self.favouriteViewController];
+    favouriteNavigationController.navigationBar.translucent = NO;
+    favouriteNavigationController.tabBarItem.image = [UIImage imageNamed:@"icon-tab-favourite"];
+    favouriteNavigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"icon-tab-favourite-filled"];
+    favouriteNavigationController.restorationIdentifier = FavouriteNavigationRestorationID;
+    self.favouriteViewController.title = NSLocalizedString(@"Favourite", nil);
+    [favouriteNavigationController.tabBarItem setTitlePositionAdjustment:tabBarTitleOffset];
+    
+    self.settingsViewController = [[SettingsViewController alloc] init];
+    UINavigationController *settingsNavigationController = [[UINavigationController alloc] initWithRootViewController:self.settingsViewController];
+    settingsNavigationController.navigationBar.translucent = NO;
+    settingsNavigationController.tabBarItem.image = [UIImage imageNamed:@"icon-tab-settings"];
+    settingsNavigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"icon-tab-settings-filled"];
+    settingsNavigationController.restorationIdentifier = SettingsNavigationRestorationID;
+    self.settingsViewController.title = NSLocalizedString(@"Settings", nil);
+    [settingsNavigationController.tabBarItem setTitlePositionAdjustment:tabBarTitleOffset];
+    
+    _tabBarController.viewControllers = @[readNavigationController, commodityNavigationController, cartNavigationController, favouriteNavigationController, settingsNavigationController];
+    
+    [_tabBarController setSelectedViewController:readNavigationController];
+    
+    return _tabBarController;
 }
 
 @end

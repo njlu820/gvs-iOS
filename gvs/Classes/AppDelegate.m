@@ -14,7 +14,7 @@
 #import "SettingsViewController.h"
 
 static NSString * const TabBarRestorationID = @"TabBarID";
-static NSString * const ReadNavigationRestorationID = @"ReadPostsNavigationID";
+static NSString * const ReadPostsNavigationRestorationID = @"ReadPostsNavigationID";
 static NSString * const CommodityNavigationRestorationID = @"CommodityNavigationID";
 static NSString * const CartNavigationRestorationID = @"CartNavigationID";
 static NSString * const FavouriteNavigationRestorationID = @"FavouriteNavigationID";
@@ -122,13 +122,13 @@ static NSString * const SettingsNavigationRestorationID = @"SettingsNavigationID
     _tabBarController.tabBar.backgroundImage = tabBackgroundImage;
     
     self.readPostsViewController = [[ReadPostsViewController alloc] init];
-    UINavigationController *readNavigationController = [[UINavigationController alloc] initWithRootViewController:self.readPostsViewController];
-    readNavigationController.navigationBar.translucent = NO;
-    readNavigationController.tabBarItem.image = [UIImage imageNamed:@"icon-tab-read"];
-    readNavigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"icon-tab-read-filled"];
-    readNavigationController.restorationIdentifier = ReadNavigationRestorationID;
-    self.readPostsViewController.title = NSLocalizedString(@"Read", nil);
-    [readNavigationController.tabBarItem setTitlePositionAdjustment:tabBarTitleOffset];
+    UINavigationController *readPostsNavigationController = [[UINavigationController alloc] initWithRootViewController:self.readPostsViewController];
+    readPostsNavigationController.navigationBar.translucent = NO;
+    readPostsNavigationController.tabBarItem.image = [UIImage imageNamed:@"icon-tab-read"];
+    readPostsNavigationController.tabBarItem.selectedImage = [UIImage imageNamed:@"icon-tab-read-filled"];
+    readPostsNavigationController.restorationIdentifier = ReadPostsNavigationRestorationID;
+    self.readPostsViewController.title = NSLocalizedString(@"Read Posts", nil);
+    [readPostsNavigationController.tabBarItem setTitlePositionAdjustment:tabBarTitleOffset];
     
     self.commodityViewController = [[CommodityViewController alloc] init];
     UINavigationController *commodityNavigationController = [[UINavigationController alloc] initWithRootViewController:self.commodityViewController];
@@ -166,9 +166,9 @@ static NSString * const SettingsNavigationRestorationID = @"SettingsNavigationID
     self.settingsViewController.title = NSLocalizedString(@"Settings", nil);
     [settingsNavigationController.tabBarItem setTitlePositionAdjustment:tabBarTitleOffset];
     
-    _tabBarController.viewControllers = @[readNavigationController, commodityNavigationController, cartNavigationController, favouriteNavigationController, settingsNavigationController];
+    _tabBarController.viewControllers = @[readPostsNavigationController, commodityNavigationController, cartNavigationController, favouriteNavigationController, settingsNavigationController];
     
-    [_tabBarController setSelectedViewController:readNavigationController];
+    [_tabBarController setSelectedViewController:readPostsNavigationController];
     
     return _tabBarController;
 }
